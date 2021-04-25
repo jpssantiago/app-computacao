@@ -1,0 +1,25 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button 
+        defaultHref="/welcome"
+        mode="md"
+      ></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-col>
+      <div class="signup-image">
+        <img src="https://i.imgur.com/aJZJsQ1.png" />
+      </div>
+      <form class="signup-inputs">
+        <ion-input name="email" [(ngModel)]="email" placeholder="E-mail"></ion-input>
+        <ion-input name="password" [(ngModel)]="password" placeholder="Senha" type="password"></ion-input>
+        <ion-button type="fill" (click)="signin()">Autenticar</ion-button>
+      </form>
+    </ion-col>
+  </ion-grid>
+</ion-content>

@@ -1,0 +1,27 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button 
+        defaultHref="/welcome"
+        mode="md"
+      ></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-col>
+      <div class="signin-image">
+        <img src="https://i.imgur.com/aJZJsQ1.png" />
+      </div>
+      <form class="signin-inputs">
+        <ion-input name="name" [(ngModel)]="name" placeholder="Nome"></ion-input>
+        <ion-input name="email" [(ngModel)]="email" placeholder="E-mail"></ion-input>
+        <ion-input name="password" [(ngModel)]="password" placeholder="Senha" type="password"></ion-input>
+        <ion-input name="confirmPassword" [(ngModel)]="confirmPassword" placeholder="Confirme sua senha" type="password"></ion-input>
+        <ion-button (click)="signup()" type="fill">Criar uma conta</ion-button>
+      </form>
+    </ion-col>
+  </ion-grid>
+</ion-content>
