@@ -25,6 +25,6 @@ export class SignupPage implements OnInit {
     console.log(' > Senha:', this.password);
     console.log(' > Confirmar senha:', this.confirmPassword);
 
-    this.router.navigate(['/home']);
+    this.router.navigate(['/main']);
   }
 }

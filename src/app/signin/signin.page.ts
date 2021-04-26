@@ -21,6 +21,6 @@ export class SigninPage implements OnInit {
     console.log(' > E-mail:', this.email);
     console.log(' > Senha:', this.password);
 
-    this.router.navigate(['/home']);
+    this.router.navigate(['/main']);
   }
 }
