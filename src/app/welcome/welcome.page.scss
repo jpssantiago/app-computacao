@@ -10,14 +10,10 @@
 
 .welcome-image {
     width: 80%;
-    height: 200px;
-
-    background: grey;
+    max-width: 350px;
 }
 
 .welcome-main {
-    margin-top: 10%;
-
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -30,6 +26,7 @@
 
     > p {
         width: 80%;
+        max-width: 350px;
 
         font-size: 16px;
         font-weight: normal;
@@ -43,14 +40,15 @@
 }
 
 .welcome-buttons {
-    margin-top: 20%;
-
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 
     width: 100%;
+    max-width: 350px;
+
+    margin-top: 50px;
     
     > ion-button {
         width: 80%;

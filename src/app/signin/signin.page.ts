@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signin',
@@ -10,7 +11,7 @@ export class SigninPage implements OnInit {
   public email : string;
   public password : string;
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
@@ -19,5 +20,7 @@ export class SigninPage implements OnInit {
     console.log('Fazendo login...');
     console.log(' > E-mail:', this.email);
     console.log(' > Senha:', this.password);
+
+    this.router.navigate(['/home']);
   }
 }

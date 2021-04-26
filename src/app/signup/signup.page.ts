@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -12,7 +13,7 @@ export class SignupPage implements OnInit {
   public password : string;
   public confirmPassword : string;
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
@@ -23,5 +24,7 @@ export class SignupPage implements OnInit {
     console.log(' > E-mail:', this.email);
     console.log(' > Senha:', this.password);
     console.log(' > Confirmar senha:', this.confirmPassword);
+
+    this.router.navigate(['/home']);
   }
 }
