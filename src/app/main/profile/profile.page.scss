@@ -1,0 +1,36 @@
+ion-title {
+    font-size: 16px;
+    font-weight: normal;
+    color: #000000;
+}
+
+.profile-item {
+    margin: .01px 0;
+
+    width: 100%;
+    height: 60px;
+
+    display: flex;
+    align-items: center;
+
+    background: white;
+    border-top: 1px solid #E7E7E7;
+    border-bottom: 1px solid #E7E7E7;
+
+    padding: 0 20px;
+
+    > ion-icon {
+        font-size: 20px;
+
+        color: #404040;
+    }
+
+    > p {
+        margin-left: 15px;
+
+        font-size: 14px;
+        font-weight: normal;
+
+        color: #404040;
+    }
+}

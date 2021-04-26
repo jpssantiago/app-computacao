@@ -1,0 +1,19 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-title>{{getMessage()}}, <strong>João</strong>.</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <div class="profile-item" routerLink="settings">
+      <ion-icon name="person"></ion-icon>
+      <p>Editar informações.</p>
+    </div>
+
+    <div class="profile-item" (click)="logout()">
+      <ion-icon name="exit"></ion-icon>
+      <p>Encerrar sessão.</p>
+    </div>
+  </ion-list>
+</ion-content>

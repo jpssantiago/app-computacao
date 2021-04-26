@@ -1,0 +1,17 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="main/profile"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form class="settings-inputs">
+    <ion-input name="name" [(ngModel)]="name" placeholder="Nome"></ion-input>
+    <ion-input name="email" [(ngModel)]="email" placeholder="E-mail"></ion-input>
+    <ion-input name="password" [(ngModel)]="password" placeholder="Senha" type="password"></ion-input>
+    <ion-input name="confirmPassword" [(ngModel)]="confirmPassword" placeholder="Confirme sua senha" type="password"></ion-input>
+    <ion-button (click)="editProfile()" type="fill">Editar perfil</ion-button>
+  </form>
+</ion-content>
