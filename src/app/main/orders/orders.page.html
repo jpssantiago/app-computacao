@@ -1,0 +1,31 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-title>{{getMessage()}}, <strong>João</strong>.</ion-title>
+  </ion-toolbar>
+
+  <ion-segment color="primary" [(ngModel)]="selectedFilter">
+    <ion-segment-button value="all">
+      <ion-label>Todos os pedidos</ion-label>
+    </ion-segment-button>
+
+    <ion-segment-button value="progress">
+      <ion-label>Em andamento</ion-label>
+    </ion-segment-button>
+
+    <ion-segment-button value="completed">
+      <ion-label>Finalizados</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <div class="order-item" *ngFor="let order of getFilteredOrders()">
+      <div class="circle"></div>
+      <span>
+        <strong class="ion-no-margin">R$ {{order.total}} - {{order.items}} itens</strong>
+        <p class="ion-no-margin">{{order.date}} - {{getOrderStatus(order.status)}}</p>
+      </span>
+    </div>
+  </ion-list>
+</ion-content>
