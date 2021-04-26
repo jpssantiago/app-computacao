@@ -2,7 +2,7 @@
   <ion-toolbar>
     <ion-title>{{getMessage()}}, <strong>João</strong>.</ion-title>
     <ion-buttons slot="end">
-      <ion-icon name="location" routerLink="address"></ion-icon>
+      <ion-icon name="location" routerLink="/address"></ion-icon>
       <ion-icon name="cart"></ion-icon>
     </ion-buttons>
   </ion-toolbar>
@@ -31,7 +31,7 @@
     <strong>Por menos de R$ 20,00</strong>
 
     <ion-slides [options]="{freeMode: true, slidesPerView: 'auto', spaceBetween: 15}">
-      <ion-slide *ngFor="let product of getPopularProducts()">
+      <ion-slide *ngFor="let product of getPopularProducts()" routerLink="/product">
         <div class="hot-product">
           <img src={{product.image}} />
 
@@ -53,6 +53,7 @@
     <div 
       class="section-item"
       *ngFor="let product of getFilteredProducts('lanches')"
+      routerLink="/product"
     >
       <span>
         <img src={{product.image}} />
@@ -71,6 +72,7 @@
     <div 
       class="section-item"
       *ngFor="let product of getFilteredProducts('pizzas')"
+      routerLink="/product"
     >
       <span>
         <img src={{product.image}} />
@@ -89,6 +91,7 @@
     <div 
       class="section-item"
       *ngFor="let product of getFilteredProducts('sobremesas')"
+      routerLink="/product"
     >
       <span>
         <img src={{product.image}} />
