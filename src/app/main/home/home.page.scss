@@ -94,3 +94,48 @@ ion-slide {
         }
     }
 }
+
+.section-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin: 10px 0;
+
+    > span {
+        display: flex;
+        align-items: center;
+        width: 70%;
+        
+        > img {
+            width: 60px;
+            height: 60px;
+
+            object-fit: cover;
+
+            border-radius: 5px;
+        }
+
+        > strong {
+            width: 40%;
+
+            // text-overflow: ellipsis;
+            // white-space: nowrap;
+            // overflow: hidden;
+
+            margin-left: 15px;
+
+            font-size: 14px;
+            font-weight: bold;
+        }
+    }
+
+    > strong {
+        text-align: end;
+        width: 100px;
+
+        font-size: 14px;
+        font-weight: bold;
+        color: #404040;
+    }
+}

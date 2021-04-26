@@ -27,10 +27,10 @@
 </ion-header>
 
 <ion-content>
-  <div class="section">
+  <div class="section" *ngIf="selectedFilter === 'todos'">
     <strong>Por menos de R$ 20,00</strong>
 
-    <ion-slides [options]="{freeMode: true, slidesPerView: 'auto', spaceBetween: 20}">
+    <ion-slides [options]="{freeMode: true, slidesPerView: 'auto', spaceBetween: 15}">
       <ion-slide *ngFor="let product of getPopularProducts()">
         <div class="hot-product">
           <img src={{product.image}} />
@@ -42,5 +42,59 @@
         </div>
       </ion-slide>
     </ion-slides>
+  </div>
+
+  <div 
+    class="section" 
+    *ngIf="selectedFilter === 'todos' || selectedFilter === 'lanches'"
+  >
+    <strong>Lanches</strong>
+
+    <div 
+      class="section-item"
+      *ngFor="let product of getFilteredProducts('lanches')"
+    >
+      <span>
+        <img src={{product.image}} />
+        <strong>{{product.name}}</strong>
+      </span>
+      <strong>R$ {{product.price}}</strong>
+    </div>
+  </div>
+
+  <div 
+    class="section" 
+    *ngIf="selectedFilter === 'todos' || selectedFilter === 'pizzas'"
+  >
+    <strong>Pizzas</strong>
+
+    <div 
+      class="section-item"
+      *ngFor="let product of getFilteredProducts('pizzas')"
+    >
+      <span>
+        <img src={{product.image}} />
+        <strong>{{product.name}}</strong>
+      </span>
+      <strong>R$ {{product.price}}</strong>
+    </div>
+  </div>
+
+  <div 
+    class="section" 
+    *ngIf="selectedFilter === 'todos' || selectedFilter === 'sobremesas'"
+  >
+    <strong>Sobremesas</strong>
+
+    <div 
+      class="section-item"
+      *ngFor="let product of getFilteredProducts('sobremesas')"
+    >
+      <span>
+        <img src={{product.image}} />
+        <strong>{{product.name}}</strong>
+      </span>
+      <strong>R$ {{product.price}}</strong>
+    </div>
   </div>
 </ion-content>
