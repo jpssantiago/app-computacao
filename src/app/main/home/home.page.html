@@ -1,9 +1,46 @@
-<ion-header>
+<ion-header class="ion-no-border">
   <ion-toolbar>
-    <ion-title>home</ion-title>
+    <ion-title>{{getMessage()}}, <strong>João</strong>.</ion-title>
+    <ion-buttons slot="end">
+      <ion-icon name="location"></ion-icon>
+      <ion-icon name="cart"></ion-icon>
+    </ion-buttons>
   </ion-toolbar>
+
+  <ion-segment scrollable color="primary" [(ngModel)]="selectedFilter">
+    <ion-segment-button value="todos">
+      <ion-label>Todos</ion-label>
+    </ion-segment-button>
+
+    <ion-segment-button value="lanches">
+      <ion-label>Lanches</ion-label>
+    </ion-segment-button>
+
+    <ion-segment-button value="pizzas">
+      <ion-label>Pizzas</ion-label>
+    </ion-segment-button>
+
+    <ion-segment-button value="sobremesas">
+      <ion-label>Sobremesas</ion-label>
+    </ion-segment-button>
+  </ion-segment>
 </ion-header>
 
 <ion-content>
+  <div class="section">
+    <strong>Por menos de R$ 20,00</strong>
 
+    <ion-slides [options]="{freeMode: true, slidesPerView: 'auto', spaceBetween: 20}">
+      <ion-slide *ngFor="let product of getPopularProducts()">
+        <div class="hot-product">
+          <img src={{product.image}} />
+
+          <span>
+            <strong>{{product.name}}</strong>
+            <p>R$ {{product.price}}</p>
+          </span>
+        </div>
+      </ion-slide>
+    </ion-slides>
+  </div>
 </ion-content>
