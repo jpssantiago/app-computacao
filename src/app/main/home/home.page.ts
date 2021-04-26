@@ -45,4 +45,7 @@ export class HomePage implements OnInit {
   public getFilteredProducts(filter) : Product[] {
     return this.products.filter(p => p.type === filter);
   }
+
+  public openAddressPage = () => {
+  }
 }

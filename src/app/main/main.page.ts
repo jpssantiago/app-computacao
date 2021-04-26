@@ -9,6 +9,5 @@ export class MainPage implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 }

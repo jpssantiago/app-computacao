@@ -1,4 +1,4 @@
-<ion-content>
+<ion-content hide-tabs>
   <div class="product-content">
     <div class="product-top">
       <div class="product-image">
@@ -10,10 +10,6 @@
       <div class="product-section">
         <strong>{{product.name}}</strong>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla tempor ipsum vitae ante pretium gravida.</p>
-      </div>
-      <div class="product-section">
-        <strong>Observações</strong>
-        <ion-input name="instructions" [(ngModel)]="instructions" placeholder="Observações sobre o pedido (opcional)"></ion-input>
       </div>
     </div>
 
@@ -30,7 +26,7 @@
         </ion-button>
       </div>
 
-      <ion-button>
+      <ion-button (click)="addToCart()">
         <span>
           <p>Adicionar</p>
           <p>R$ {{calculateTotalPrice()}}</p>
