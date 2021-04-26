@@ -1,0 +1,17 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="main/home"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form class="address-inputs">
+    <ion-input name="zipCode" [(ngModel)]="zipCode" placeholder="CEP"></ion-input>
+    <ion-input name="street" [(ngModel)]="street" placeholder="Rua"></ion-input>
+    <ion-input name="number" [(ngModel)]="number" placeholder="Número" type="number"></ion-input>
+    <ion-input name="otherInfo" [(ngModel)]="otherInfo" placeholder="Complemento (opicional)"></ion-input>
+    <ion-button (click)="editAddress()" type="fill">Editar endereço</ion-button>
+  </form>
+</ion-content>
