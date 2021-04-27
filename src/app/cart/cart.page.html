@@ -20,7 +20,7 @@
       <strong>Itens do pedido</strong>
 
       <div class="order-items">
-        <div class="order-item" *ngFor="let product of products">
+        <div class="order-item" *ngFor="let product of products" routerLink="/product">
           <div class="left-order-item">
             <img src={{product.image}} alt="Pizza Grande">
             <span>

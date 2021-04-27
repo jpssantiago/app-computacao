@@ -1,6 +1,8 @@
+import Product from './product';
+
 export default class Order {
     id: number;
-    items: number; // Será um array de produtos.
+    items: Product[];
     total: number;
     date: string;
     status: string;
