@@ -29,14 +29,14 @@ export class AddressPage implements OnInit {
       return;
     }
     
-    console.log('Fazendo cadastro...');
+    console.log('Editando endereço..');
     console.log(' > CEP:', this.zipCode);
     console.log(' > Rua:', this.street);
     console.log(' > Número:', this.number);
     console.log(' > Complemento:', this.otherInfo);
 
     const toast = await this.toastController.create({
-      message: 'O seu endereço atualizado com sucesso.',
+      message: 'O seu endereço foi atualizado com sucesso.',
       duration: 3000,
     });
     toast.present();
