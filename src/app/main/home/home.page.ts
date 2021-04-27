@@ -1,13 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import getProducts from '../../../assets/data/products';
 
-interface Product {
-  id: number,
-  name: string,
-  price: number,
-  image: string,
-  type: string,
-}
+import Product from '../../../models/product';
 
 @Component({
   selector: 'app-home',

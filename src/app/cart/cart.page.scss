@@ -1,0 +1,138 @@
+.section {
+    margin: 10px 15px;
+
+    > strong {
+        font-size: 16px;
+        font-weight: bold;
+    }
+}
+
+.selector {
+    width: 100%;
+    height: 45px;
+
+    margin-top: 10px;
+    padding: 0 10px;
+
+    display: flex;
+    align-items: center;
+
+    color: #404040;
+    background: #FFFFFF;
+    border: 1px solid #404040;
+    border-radius: 3px;
+
+    > ion-icon {
+        font-size: 20px;
+    }
+
+    > p {
+        margin-left: 10px;
+
+        font-size: 14px;
+        font-weight: normal;
+    }
+}
+
+.mt-40 {
+    margin-top: 40px;
+}
+
+.order-items {
+    margin-top: 10px;
+}
+
+.order-item {
+    width: 100%;
+    height: 60px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .left-order-item {
+        display: flex;
+        align-items: center;
+
+        > img {
+            width: 48px;
+            height: 48px;
+
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        > span {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+
+            > p {
+                margin: 1px 0 1px 10px;
+
+                font-size: 14px;
+                font-weight: normal;
+
+                color: black;
+
+                &:last-child {
+                    color: #404040;
+                }
+            }
+        }
+    }
+
+    > strong {
+        font-size: 14px;
+        font-weight: bold;
+
+        color: #404040;
+    }
+}
+
+.order-price {
+    margin-top: 30px;
+
+    > span {
+        margin: 10px 0;
+
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        > p {
+            margin: 0;
+
+            font-size: 14px;
+            font-weight: normal;
+
+            color: #404040;
+        }
+
+        > strong {
+            font-size: 14px;
+            font-weight: bold;
+        }
+    }
+}
+
+ion-button {
+    width: 100%;
+    height: 45px;
+    margin-left: -.5px;
+
+    > span {
+        width: 105%;
+
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        > p {
+            font-size: 14px;
+            font-weight: bold;
+            text-transform: none;
+        }
+    }
+}

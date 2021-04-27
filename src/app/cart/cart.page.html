@@ -7,5 +7,64 @@
 </ion-header>
 
 <ion-content>
+  <ion-list>
+    <div class="section">
+      <strong>Endereço</strong>
+      <div class="selector" routerLink="/address">
+        <ion-icon name="location"></ion-icon>
+        <p>Av. Brasil, 102, 12.345-678</p>
+      </div>
+    </div>
 
+    <div class="section mt-40">
+      <strong>Itens do pedido</strong>
+
+      <div class="order-items">
+        <div class="order-item" *ngFor="let product of products">
+          <div class="left-order-item">
+            <img src={{product.image}} alt="Pizza Grande">
+            <span>
+              <p>{{product.name}}</p>
+              <p>x1</p>
+            </span>
+          </div>
+          <strong>{{product.price}}</strong>
+        </div>
+      </div>
+
+      <div class="order-price">
+        <span>
+          <p>Soma dos itens</p>
+          <p>R$ {{calculateProductsPrice()}}</p>
+        </span>
+
+        <span>
+          <p>Taxa de entrega</p>
+          <p>R$ {{deliveryTax}}</p>
+        </span>
+
+        <span>
+          <strong>Valor total</strong>
+          <strong>R$ {{calculateTotalValue()}}</strong>
+        </span>
+      </div>
+    </div>
+
+    <div class="section mt-40">
+      <strong>Forma de pagamento</strong>
+      <div class="selector">
+        <ion-icon name="location"></ion-icon>
+        <p>Dinheiro (na entrega).</p>
+      </div>
+    </div>
+
+    <div class="section mt-40">
+      <ion-button (click)="finishOrder()">
+        <span>
+          <p>Concluir pedido</p>
+          <p>R$ {{calculateTotalValue()}}</p>
+        </span>
+      </ion-button>
+    </div>
+  </ion-list>
 </ion-content>

@@ -1,13 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import getOrders from '../../../assets/data/orders';
 
-interface Order {
-  id: number,
-  items: number, // Será uma lista de produtos. Product[]
-  total: number,
-  date: string,
-  status: string,
-}
+import Order from '../../../models/order';
 
 @Component({
   selector: 'app-orders',
