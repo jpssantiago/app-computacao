@@ -28,24 +28,24 @@
               <p>x1</p>
             </span>
           </div>
-          <strong>{{product.price}}</strong>
+          <strong>{{product.price | currency:"BRL"}}</strong>
         </div>
       </div>
 
       <div class="order-price">
         <span>
           <p>Soma dos itens</p>
-          <p>R$ {{calculateProductsPrice()}}</p>
+          <p>{{calculateProductsPrice() | currency:"BRL"}}</p>
         </span>
 
         <span>
           <p>Taxa de entrega</p>
-          <p>R$ {{deliveryTax}}</p>
+          <p>{{deliveryTax | currency:"BRL"}}</p>
         </span>
 
         <span>
           <strong>Valor total</strong>
-          <strong>R$ {{calculateTotalValue()}}</strong>
+          <strong>{{calculateTotalValue() | currency:"BRL"}}</strong>
         </span>
       </div>
     </div>
@@ -62,7 +62,7 @@
       <ion-button (click)="finishOrder()">
         <span>
           <p>Concluir pedido</p>
-          <p>R$ {{calculateTotalValue()}}</p>
+          <p>{{calculateTotalValue() | currency:"BRL"}}</p>
         </span>
       </ion-button>
     </div>

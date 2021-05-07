@@ -29,7 +29,7 @@
       <ion-button (click)="addToCart()">
         <span>
           <p>Adicionar</p>
-          <p>R$ {{calculateTotalPrice()}}</p>
+          <p>{{calculateTotalPrice() | currency:"BRL"}}</p>
         </span>
       </ion-button>
     </div>

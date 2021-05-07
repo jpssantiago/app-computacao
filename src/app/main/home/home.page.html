@@ -37,7 +37,7 @@
 
           <span>
             <strong>{{product.name}}</strong>
-            <p>R$ {{product.price}}</p>
+            <p>{{product.price | currency:"BRL"}}</p>
           </span>
         </div>
       </ion-slide>
@@ -59,7 +59,7 @@
         <img src={{product.image}} />
         <strong>{{product.name}}</strong>
       </span>
-      <strong>R$ {{product.price}}</strong>
+      <strong>{{product.price | currency:"BRL"}}</strong>
     </div>
   </div>
 
@@ -78,7 +78,7 @@
         <img src={{product.image}} />
         <strong>{{product.name}}</strong>
       </span>
-      <strong>R$ {{product.price}}</strong>
+      <strong>{{product.price | currency:"BRL"}}</strong>
     </div>
   </div>
 
@@ -97,7 +97,7 @@
         <img src={{product.image}} />
         <strong>{{product.name}}</strong>
       </span>
-      <strong>R$ {{product.price}}</strong>
+      <strong>{{product.price | currency:"BRL"}}</strong>
     </div>
   </div>
 </ion-content>
