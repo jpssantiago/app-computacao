@@ -1,10 +1,5 @@
 import Order from './order';
 import Address from './address';
-import Product from './product';
-
-interface Cart {
-    [productId: number]: number;
-}
 
 export default class User {
     id: number;

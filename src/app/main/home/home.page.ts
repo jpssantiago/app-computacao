@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from 'src/app/services/user.service';
 import getProducts from '../../../assets/data/products';
 
 import Product from '../../../models/product';
@@ -14,7 +15,7 @@ export class HomePage implements OnInit {
   private products : Product[] = getProducts();
   public categories : string[] = ['lanches', 'pizzas', 'sobremesas'];
 
-  constructor() { }
+  constructor(public userService: UserService) { }
 
   ngOnInit() {
   }
