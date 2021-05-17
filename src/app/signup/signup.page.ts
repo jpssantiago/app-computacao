@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import { UserService } from '../services/user.service';
 
@@ -16,13 +17,14 @@ export class SignupPage implements OnInit {
 
   constructor(
     private router: Router, 
-    private userService: UserService
+    private userService: UserService,
+    private firebaseAuth: AngularFireAuth
   ) { }
 
   ngOnInit() {
   }
 
-  public signup() {
+  public async signup() {
     if (!this.name || !this.email || !this.password || !this.confirmPassword) {
       return; // Preencha todos os campos.
     }
@@ -31,7 +33,14 @@ export class SignupPage implements OnInit {
       return; // Senhas não coincidem.
     }
 
-    this.userService.createUser(this.name, this.email, this.password);
-    this.router.navigate(['/main/home']);
+    try {
+      const response = await this.firebaseAuth.createUserWithEmailAndPassword(this.email, this.password);
+      if (response) {
+        this.userService.createUser(this.name, this.email, this.password);
+        this.router.navigate(['/main/home']);
+      }
+    } catch(err) {
+      console.error(err);
+    }
   }
 }
