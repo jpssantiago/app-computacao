@@ -12,16 +12,8 @@
       <ion-label>Todos</ion-label>
     </ion-segment-button>
 
-    <ion-segment-button value="lanches">
-      <ion-label>Lanches</ion-label>
-    </ion-segment-button>
-
-    <ion-segment-button value="pizzas">
-      <ion-label>Pizzas</ion-label>
-    </ion-segment-button>
-
-    <ion-segment-button value="sobremesas">
-      <ion-label>Sobremesas</ion-label>
+    <ion-segment-button *ngFor="let category of categories" [value]="category">
+      <ion-label>{{capitalizeCategoryName(category)}}</ion-label>
     </ion-segment-button>
   </ion-segment>
 </ion-header>
@@ -44,60 +36,26 @@
     </ion-slides>
   </div>
 
-  <div 
+  <div
+    *ngFor="let category of categories"
     class="section" 
-    *ngIf="selectedFilter === 'todos' || selectedFilter === 'lanches'"
   >
-    <strong>Lanches</strong>
-
-    <div 
-      class="section-item"
-      *ngFor="let product of getFilteredProducts('lanches')"
-      routerLink="/product"
+    <div
+      *ngIf="selectedFilter === 'todos' || selectedFilter === category"
     >
-      <span>
-        <img src={{product.image}} />
-        <strong>{{product.name}}</strong>
-      </span>
-      <strong>{{product.price | currency:"BRL"}}</strong>
-    </div>
-  </div>
+      <strong>{{capitalizeCategoryName(category)}}</strong>
 
-  <div 
-    class="section" 
-    *ngIf="selectedFilter === 'todos' || selectedFilter === 'pizzas'"
-  >
-    <strong>Pizzas</strong>
-
-    <div 
-      class="section-item"
-      *ngFor="let product of getFilteredProducts('pizzas')"
-      routerLink="/product"
-    >
-      <span>
-        <img src={{product.image}} />
-        <strong>{{product.name}}</strong>
-      </span>
-      <strong>{{product.price | currency:"BRL"}}</strong>
-    </div>
-  </div>
-
-  <div 
-    class="section" 
-    *ngIf="selectedFilter === 'todos' || selectedFilter === 'sobremesas'"
-  >
-    <strong>Sobremesas</strong>
-
-    <div 
-      class="section-item"
-      *ngFor="let product of getFilteredProducts('sobremesas')"
-      routerLink="/product"
-    >
-      <span>
-        <img src={{product.image}} />
-        <strong>{{product.name}}</strong>
-      </span>
-      <strong>{{product.price | currency:"BRL"}}</strong>
+      <div 
+        class="section-item"
+        *ngFor="let product of getFilteredProducts(category)"
+        routerLink="/product"
+      >
+        <span>
+          <img src={{product.image}} />
+          <strong>{{product.name}}</strong>
+        </span>
+        <strong>{{product.price | currency:"BRL"}}</strong>
+      </div>
     </div>
   </div>
 </ion-content>

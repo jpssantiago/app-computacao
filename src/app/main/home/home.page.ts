@@ -12,6 +12,7 @@ export class HomePage implements OnInit {
 
   public selectedFilter: string = 'todos';
   private products : Product[] = getProducts();
+  public categories : string[] = ['lanches', 'pizzas', 'sobremesas'];
 
   constructor() { }
 
@@ -36,10 +37,14 @@ export class HomePage implements OnInit {
     });
   }
 
-  public getFilteredProducts(filter) : Product[] {
+  public getFilteredProducts(filter: string) : Product[] {
     return this.products.filter(p => p.type === filter);
   }
 
   public openAddressPage = () => {
+  }
+
+  public capitalizeCategoryName(category: string): string {
+    return category.substring(0, 1).toUpperCase() + category.substring(1);
   }
 }
