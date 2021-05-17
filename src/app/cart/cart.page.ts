@@ -14,7 +14,7 @@ export class CartPage implements OnInit {
   public products : Product[] = []; // = getProducts().slice(0, 3);
   public deliveryTax = 6; // Temporário e estático.
 
-  constructor(private userService: UserService) {  
+  constructor(public userService: UserService) {  
     this.cart = this.userService.getCart();
 
     for (let productId of this.cart.keys()) {

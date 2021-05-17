@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-signup',
@@ -13,18 +14,24 @@ export class SignupPage implements OnInit {
   public password : string;
   public confirmPassword : string;
 
-  constructor(private router: Router) { }
+  constructor(
+    private router: Router, 
+    private userService: UserService
+  ) { }
 
   ngOnInit() {
   }
 
   public signup() {
-    console.log('Fazendo cadastro...');
-    console.log(' > Nome:', this.name);
-    console.log(' > E-mail:', this.email);
-    console.log(' > Senha:', this.password);
-    console.log(' > Confirmar senha:', this.confirmPassword);
+    if (!this.name || !this.email || !this.password || !this.confirmPassword) {
+      return; // Preencha todos os campos.
+    }
 
-    this.router.navigate(['/main']);
+    if (this.password !== this.confirmPassword) {
+      return; // Senhas não coincidem.
+    }
+
+    this.userService.createUser(this.name, this.email, this.password);
+    this.router.navigate(['/main/home']);
   }
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { ToastController } from '@ionic/angular';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-settings',
@@ -9,22 +10,31 @@ import { ToastController } from '@ionic/angular';
 })
 export class SettingsPage implements OnInit {
 
-  public name : string = 'Nome de teste';
-  public email : string = 'E-mail de teste';
-  public password : string = 'senha';
-  public confirmPassword : string = 'senha';
+  public name : string;
 
-  constructor(private navController : NavController, private toastController : ToastController) { }
+  constructor(
+    private navController : NavController, 
+    private toastController : ToastController,
+    private userService: UserService
+  ) { 
+    this.name = userService.user.name;
+  }
 
   ngOnInit() {
   }
 
   public editProfile = async () => {
-    console.log('Editando perfil...');
-    console.log(' > Nome:', this.name);
-    console.log(' > E-mail:', this.email);
-    console.log(' > Senha:', this.password);
-    console.log(' > Confirmar senha:', this.confirmPassword);
+    if (!this.name) {
+      const toast = await this.toastController.create({
+        message: 'Preencha o campo de nome para editar.',
+        duration: 2000,
+      });
+
+      toast.present();
+      return;
+    }
+
+    this.userService.editUser(this.name);
 
     this.navController.pop();
 

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-profile',
@@ -9,7 +10,11 @@ import { AlertController } from '@ionic/angular';
 })
 export class ProfilePage implements OnInit {
 
-  constructor(private alertController : AlertController, private router: Router) { }
+  constructor(
+    private alertController : AlertController, 
+    private router: Router,
+    public userService: UserService
+  ) { }
 
   ngOnInit() {
   }

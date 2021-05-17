@@ -1,6 +1,6 @@
 <ion-header class="ion-no-border">
   <ion-toolbar>
-    <ion-title>{{getMessage()}}, <strong>João</strong>.</ion-title>
+    <ion-title>{{getMessage()}}, <strong>{{this.userService.user.name}}</strong>.</ion-title>
   </ion-toolbar>
 
   <ion-segment color="primary" [(ngModel)]="selectedFilter">

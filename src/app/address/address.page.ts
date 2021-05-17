@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController, ToastController } from '@ionic/angular';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-address',
@@ -8,12 +9,22 @@ import { NavController, ToastController } from '@ionic/angular';
 })
 export class AddressPage implements OnInit {
 
-  public zipCode : string = '12.345-678';
-  public street : string = 'Av. Brasil';
-  public number : string = '102';
+  public zipCode : string;
+  public street : string;
+  public number : number;
   public otherInfo : string;
 
-  constructor(private navController : NavController, private toastController : ToastController) { }
+  constructor(
+    private navController : NavController, 
+    private toastController : ToastController,
+    private userService: UserService,
+  ) { 
+    const address = this.userService.user.address;
+    this.zipCode = address.zip;
+    this.street = address.street;
+    this.number = address.number;
+    this.otherInfo = address.otherInfo;
+  }
 
   ngOnInit() {
   }
@@ -28,12 +39,8 @@ export class AddressPage implements OnInit {
       toast.present();
       return;
     }
-    
-    console.log('Editando endereço..');
-    console.log(' > CEP:', this.zipCode);
-    console.log(' > Rua:', this.street);
-    console.log(' > Número:', this.number);
-    console.log(' > Complemento:', this.otherInfo);
+
+    this.userService.editAddress(this.zipCode, this.street, this.number, this.otherInfo);
 
     const toast = await this.toastController.create({
       message: 'O seu endereço foi atualizado com sucesso.',

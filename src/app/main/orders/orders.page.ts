@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import getOrders from '../../../assets/data/orders';
+import { UserService } from 'src/app/services/user.service';
 
 import Order from '../../../models/order';
 
@@ -11,9 +11,11 @@ import Order from '../../../models/order';
 export class OrdersPage implements OnInit {
 
   public selectedFilter : 'all' | 'progress' | 'completed' = 'all';
-  private orders : Order[] = getOrders();
+  private orders : Order[] = [];
 
-  constructor() { }
+  constructor(public userService: UserService) {
+    this.orders = this.userService.user.orders;
+  }
 
   ngOnInit() {
   }

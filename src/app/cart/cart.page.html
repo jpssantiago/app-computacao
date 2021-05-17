@@ -12,7 +12,7 @@
       <strong>Endereço</strong>
       <div class="selector" routerLink="/address">
         <ion-icon name="location"></ion-icon>
-        <p>Av. Brasil, 102, 12.345-678</p>
+        <p>{{this.userService.user.address.getFormattedAddress()}}</p>
       </div>
     </div>
 
