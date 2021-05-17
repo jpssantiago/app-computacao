@@ -23,7 +23,7 @@
     <strong>Por menos de R$ 20,00</strong>
 
     <ion-slides [options]="{freeMode: true, slidesPerView: 'auto', spaceBetween: 15}">
-      <ion-slide *ngFor="let product of getPopularProducts()" routerLink="/product">
+      <ion-slide *ngFor="let product of getPopularProducts()" [routerLink]="['/product', product.id]">
         <div class="hot-product">
           <img src={{product.image}} />
 
@@ -48,7 +48,7 @@
       <div 
         class="section-item"
         *ngFor="let product of getFilteredProducts(category)"
-        routerLink="/product"
+        [routerLink]="['/product', product.id]"
       >
         <span>
           <img src={{product.image}} />
