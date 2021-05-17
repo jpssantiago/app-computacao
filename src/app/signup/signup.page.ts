@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { AngularFirestore } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
+import Address from 'src/models/address';
 import { UserService } from '../services/user.service';
 
 @Component({
@@ -18,7 +20,8 @@ export class SignupPage implements OnInit {
   constructor(
     private router: Router, 
     private userService: UserService,
-    private firebaseAuth: AngularFireAuth
+    private firebaseAuth: AngularFireAuth,
+    private firebaseStorage: AngularFirestore,
   ) { }
 
   ngOnInit() {
@@ -36,7 +39,14 @@ export class SignupPage implements OnInit {
     try {
       const response = await this.firebaseAuth.createUserWithEmailAndPassword(this.email, this.password);
       if (response) {
-        this.userService.createUser(this.name, this.email, this.password);
+        const id = response.user.uid;
+        this.firebaseStorage.doc(`users/${id}`).set({
+          id,
+          email: this.email,
+          name: this.name,
+          orders: [],
+        });
+        this.userService.setUser(this.name, this.email);
         this.router.navigate(['/main/home']);
       }
     } catch(err) {
@@ -44,3 +54,12 @@ export class SignupPage implements OnInit {
     }
   }
 }
+
+/*
+.add({
+          id: id,
+          email: this.email,
+          name: this.name,
+          orders: [],
+        });
+*/

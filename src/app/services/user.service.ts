@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import Address from 'src/models/address';
+import Order from 'src/models/order';
 import Product from 'src/models/product';
 import User from 'src/models/user';
 
@@ -8,10 +9,10 @@ import User from 'src/models/user';
 })
 export class UserService {
 
-  public user: User = new User('João', 'jps_santiago@Outlook.com', '123');
+  public user: User;
 
-  public createUser(name: string, email: string, password: string) {
-    this.user = new User(name, email, password);
+  public setUser(name: string, email: string, address: Address = new Address(), orders: Order[] = []) {
+    this.user = new User(name, email, address, orders);
   }
 
   public getCart() {
