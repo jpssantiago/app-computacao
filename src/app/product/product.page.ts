@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { NavController, ToastController } from '@ionic/angular';
 
 import getProducts from '../../assets/data/products';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-product',
@@ -12,16 +13,18 @@ import getProducts from '../../assets/data/products';
 export class ProductPage implements OnInit {
   [x: string]: any;
 
-  public product; // = getProducts()[0];
-  public amount : number = 1;
+  public product;
+  public amount : number;
 
   constructor(
     private navController : NavController, 
     private toastController : ToastController, 
-    route: ActivatedRoute
+    route: ActivatedRoute,
+    private userService: UserService,
   ) {
     const id = +route.snapshot.paramMap.get('id');
     this.product = getProducts()[id];
+    this.amount = this.userService.getProductAmountInCart(this.product) || 1;
   }
 
   ngOnInit() {
@@ -41,15 +44,36 @@ export class ProductPage implements OnInit {
   }
 
   public addToCart = async () => {
-    console.log(`Adicionar ${this.amount} no carrinho por ${this.calculateTotalPrice()}.`);
+    this.userService.updateCart(this.product, this.amount);
 
     this.navController.pop();
 
     const toast = await this.toastController.create({
-      message: 'Produto adicionado ao carrinho.',
+      message: `Você adicionou ${this.amount} ${this.product.name} ao carrinho.`,
       duration: 3000,
     });
 
     toast.present();
+  }
+
+  public removeFromCart = async () => {
+    this.userService.removeProductFromCard(this.product);
+
+    this.navController.pop();
+
+    const toast = await this.toastController.create({
+      message: `Você removeu o item ${this.product.name} do carrinho.`,
+      duration: 3000,
+    });
+
+    toast.present();
+  }
+
+  public updateCart = () => {
+    if (this.amount > 0) {
+      this.addToCart();
+    } else {
+      this.removeFromCart();
+    }
   }
 }

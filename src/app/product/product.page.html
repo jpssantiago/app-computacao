@@ -15,7 +15,7 @@
 
     <div class="product-bottom">
       <div class="amount-controller">
-        <ion-button fill="clear" [disabled]="amount <= 1" (click)="decrement()">
+        <ion-button fill="clear" [disabled]="amount < 1" (click)="decrement()">
           <ion-icon name="remove"></ion-icon>
         </ion-button>
 
@@ -26,9 +26,9 @@
         </ion-button>
       </div>
 
-      <ion-button (click)="addToCart()">
+      <ion-button (click)="updateCart()">
         <span>
-          <p>Adicionar</p>
+          <p>{{amount > 0 ? 'Adicionar' : 'Remover'}}</p>
           <p>{{calculateTotalPrice() | currency:"BRL"}}</p>
         </span>
       </ion-button>

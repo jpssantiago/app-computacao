@@ -25,17 +25,17 @@
             <img src={{product.image}} alt="Pizza Grande">
             <span>
               <p>{{product.name}}</p>
-              <p>x1</p>
+              <p>x{{this.cart.get(product.id)}}</p>
             </span>
           </div>
-          <strong>{{product.price | currency:"BRL"}}</strong>
+          <strong>{{calculateProductPrice(product.id) | currency:"BRL"}}</strong>
         </div>
       </div>
 
       <div class="order-price">
         <span>
           <p>Soma dos itens</p>
-          <p>{{calculateProductsPrice() | currency:"BRL"}}</p>
+          <p>{{calculateProductsSum() | currency:"BRL"}}</p>
         </span>
 
         <span>
