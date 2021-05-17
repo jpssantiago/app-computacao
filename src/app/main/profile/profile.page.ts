@@ -41,6 +41,7 @@ export class ProfilePage implements OnInit {
         {
           text: 'Sair',
           handler: () => {
+            this.userService.clearUser();
             this.router.navigate(['/welcome']);
           }
         }

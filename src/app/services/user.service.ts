@@ -15,6 +15,10 @@ export class UserService {
     this.user = new User(name, email, address, orders);
   }
 
+  public clearUser() {
+    this.user = undefined;
+  }
+
   public getCart() {
     return this.user.cart;
   }
