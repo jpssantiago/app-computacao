@@ -14,11 +14,10 @@ export class OrdersPage implements OnInit {
   private orders : Order[] = [];
 
   constructor(public userService: UserService) {
-    this.orders = this.userService.user.orders;
+    this.orders = userService.user.orders;
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
   public getMessage = (): string => {
     const hour = new Date().getHours();
@@ -33,6 +32,8 @@ export class OrdersPage implements OnInit {
   }
 
   public getFilteredOrders = () : Order[] => {
+    if (this.orders.length == 0) return this.orders;
+
     if (this.selectedFilter === 'all') {
       return this.orders;
     } else if (this.selectedFilter === 'progress') {

@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import Product from '../../models/product';
 import getProducts from '../../assets/data/products';
 import { UserService } from '../services/user.service';
+import { NavController, ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-cart',
@@ -14,7 +15,11 @@ export class CartPage implements OnInit {
   public products : Product[] = []; // = getProducts().slice(0, 3);
   public deliveryTax = 6; // Temporário e estático.
 
-  constructor(public userService: UserService) {  
+  constructor(
+    public userService: UserService,
+    private toastController : ToastController, 
+    private navController : NavController, 
+  ) {  
     this.cart = this.userService.getCart();
 
     for (let productId of this.cart.keys()) {
@@ -30,7 +35,7 @@ export class CartPage implements OnInit {
     return price * this.cart.get(id);
   }
 
-  public calculateProductsSum = () : number => {
+  public calculateProductsSum = (): number => {
     let total = 0;
 
     for (let productId of this.cart.keys()) {
@@ -40,11 +45,39 @@ export class CartPage implements OnInit {
     return total;
   }
 
-  public calculateTotalValue = () : number => {
+  public calculateTotalValue = (): number => {
     return this.calculateProductsSum() + this.deliveryTax;
   }
 
-  public finishOrder = () => {
-    console.log('Concluir ordem.');
+  public finishOrder = async () => {
+    const address = this.userService.user.address;
+    if (!address.street || !address.number || !address.zip) {
+      const toast = await this.toastController.create({
+        message: `Você ainda não definiu o seu endereço.`,
+        duration: 3000,
+      });
+      toast.present();
+      return;
+    }
+
+    if (this.products.length == 0) {
+      const toast = await this.toastController.create({
+        message: `O seu carrinho está vazio no momento.`,
+        duration: 3000,
+      });
+      toast.present();
+      return;
+    }
+
+    this.userService.addOrder(this.products, this.calculateTotalValue());
+    this.userService.clearCart();
+
+    this.navController.pop();
+
+    const toast = await this.toastController.create({
+      message: `O seu pedido foi enviado para o restaurante. Acompanhe-o na área de pedidos.`,
+      duration: 3000,
+    });
+    toast.present();
   }
 }

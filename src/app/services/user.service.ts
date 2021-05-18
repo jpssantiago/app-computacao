@@ -37,7 +37,6 @@ export class UserService {
 
   public removeProductFromCard(product: Product) {
     this.user.cart.delete(product.id);
-    console.log(this.user.cart);
   }
 
   public editAddress(zip: string, street: string, number: number, otherInfo: string) {
@@ -69,6 +68,14 @@ export class UserService {
 
   public saveAddressToStorage() { 
     this.storage.set('address', this.user.address);
+  }
+
+  public addOrder(items: Product[], total: number) {
+    this.user.orders.push(new Order(items, total));
+  }
+
+  public clearCart() {
+    this.user.cart = new Map<number, number>();
   }
 
   constructor(private storage: Storage) { }
