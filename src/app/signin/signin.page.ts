@@ -13,8 +13,8 @@ import { UserService } from '../services/user.service';
 })
 export class SigninPage implements OnInit {
 
-  public email : string;
-  public password : string;
+  public email: string;
+  public password: string;
   public firebaseSubscription;
 
   constructor(
