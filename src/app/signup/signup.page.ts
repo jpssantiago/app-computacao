@@ -3,7 +3,6 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
-import Address from 'src/models/address';
 import { UserService } from '../services/user.service';
 
 @Component({
