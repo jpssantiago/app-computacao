@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
+import { ToastController } from '@ionic/angular';
+import { OverlayBaseController } from '@ionic/angular/util/overlay';
 import { UserService } from '../services/user.service';
 
 @Component({
@@ -19,7 +21,8 @@ export class SigninPage implements OnInit {
     private router: Router,
     private firebaseAuth: AngularFireAuth,
     private firebaseStorage: AngularFirestore,
-    private userService: UserService
+    private userService: UserService,
+    private toastController: ToastController
   ) { }
 
   ngOnInit() {
@@ -43,7 +46,24 @@ export class SigninPage implements OnInit {
         });
       }
     } catch(err) {
-      console.log(err);
+      const { code } = err;
+      let message: string;
+      
+      if (code === 'auth/wrong-password') {
+        message = 'E-mail ou senha incorretos.';
+      } else if (code === 'auth/user-not-found') {
+        message = 'Usuário não existe no banco de dados.';
+      } else if (code === 'auth/invalid-email') {
+        message = 'Insira um e-mail válido para continuar.';
+      } else {
+        message = 'Um erro inesperado ocorreu, tente novamente.';
+        console.log(err);
+      }
+
+      this.toastController.create({
+        message,
+        duration: 2000,
+      }).then(toast => toast.present());
     }
   }
 }
