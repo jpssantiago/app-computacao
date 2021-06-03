@@ -30,7 +30,8 @@ export class SigninPage implements OnInit {
   ngOnInit() {
   }
 
-  public async signin() {   
+  public async signin() {  
+    await this.presentLoading(); 
     try {
       const response = await this.firebaseAuth.signInWithEmailAndPassword(this.email, this.password);
       if (response) {
@@ -45,8 +46,8 @@ export class SigninPage implements OnInit {
 
           this.email = '';
           this.password = '';
+          this.loading.dismiss();
         });
-        await this.presentLoading();
       } 
     } catch(err) {
       const { code } = err;
@@ -66,7 +67,6 @@ export class SigninPage implements OnInit {
         message,
         duration: 2000,
       }).then(toast => toast.present());
-      await this.presentLoading();
       this.loading.dismiss();
     } 
     finally {
