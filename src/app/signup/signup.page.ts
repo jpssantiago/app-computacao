@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
-import { ToastController } from '@ionic/angular';
+import { LoadingController, ToastController } from '@ionic/angular';
 import { UserService } from '../services/user.service';
 
 @Component({
@@ -16,24 +16,28 @@ export class SignupPage implements OnInit {
   public email: string;
   public password: string;
   public confirmPassword: string;
+  private loading: any;
 
   constructor(
     private router: Router, 
     private userService: UserService,
     private firebaseAuth: AngularFireAuth,
     private firebaseStorage: AngularFirestore,
-    private toastController: ToastController
+    private toastController: ToastController,
+    private loadingController: LoadingController
   ) { }
 
   ngOnInit() {
   }
 
   public async signup() {
+    await this.presentLoading();
     if (!this.name || !this.email || !this.password || !this.confirmPassword) {
       this.toastController.create({
         message: 'Preencha todos os campos para continuar.',
         duration: 2000,
-      }).then(toast => toast.present());
+      }).then(toast => toast.present()); 
+      this.loading.dismiss();
       return; // Preencha todos os campos.
     }
 
@@ -42,6 +46,7 @@ export class SignupPage implements OnInit {
         message: 'As senhas informadas não coincidem.',
         duration: 2000,
       }).then(toast => toast.present());
+      this.loading.dismiss();
       return; // Senhas não coincidem.
     }
 
@@ -58,6 +63,8 @@ export class SignupPage implements OnInit {
         this.userService.setUser(this.name, this.email);
         this.router.navigate(['/main/home']);
       }
+      
+      this.loading.dismiss();
     } catch(err) {
       const { code } = err;
       let message: string;
@@ -75,6 +82,16 @@ export class SignupPage implements OnInit {
         message,
         duration: 2000,
       }).then(toast => toast.present());
+      this.loading.dismiss();
     }
+    finally {
+      this.loading.dismiss();
+  }
+  }
+  async presentLoading() {
+    this.loading = await this.loadingController.create({
+      message: 'Por favor, aguarde...'
+    });
+    return this.loading.present();
   }
 }
