@@ -13,7 +13,7 @@ export class HomePage implements OnInit {
 
   public selectedFilter: string = 'todos';
   private products : Product[] = getProducts();
-  public categories : string[] = ['lanches', 'pizzas', 'sobremesas'];
+  public categories : string[] = ['lanches', 'pizzas', 'sobremesas', 'bebidas'];
 
   constructor(public userService: UserService) { }
 
