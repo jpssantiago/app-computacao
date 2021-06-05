@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/auth';
 import { Storage } from '@ionic/storage-angular';
 
 import Address from 'src/models/address';
@@ -78,5 +79,9 @@ export class UserService {
     this.user.cart = new Map<number, number>();
   }
 
-  constructor(private storage: Storage) { }
+  constructor(private storage: Storage, private afa: AngularFireAuth) { }
+
+  getAuth(){
+    return this.afa
+  }
 }
