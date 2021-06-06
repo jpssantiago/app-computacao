@@ -38,6 +38,13 @@ export class HomePage implements OnInit {
     });
   }
 
+  public getPopularProducts499() {
+    return this.products.filter(product => {
+      return product.price <= 4.99;
+      
+    });
+  }
+
   public getFilteredProducts(filter: string) : Product[] {
     return this.products.filter(p => p.type === filter);
   }

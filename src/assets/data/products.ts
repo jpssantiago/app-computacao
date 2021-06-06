@@ -151,7 +151,31 @@ const getProducts = () => {
             "image": "https://savegnago.vteximg.com.br/arquivos/ids/285095-1000-1000/REFRIGERANTE-ANTARCTICA-2L-PET-GUARANA.jpg?v=636476354496100000",
             "type": "bebidas",
             "description": "Guaraná Antarctica - Gelada.",
-        }
+        },
+        {
+            "id": 19,
+            "name": "Coca-Cola Lata 310ml ",
+            "price": 3.99,
+            "image": "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcTdClRFtJ9MD-f-PkRsmx5Bn-XHSRo279h9zIcD6FGFV3gdb_vA9K9vAMFu5rdbn0uEboPDkCGD_P3oy_cBf0Vr2pxnt_mg3wqk96iIfISEfTJryoUYApzL&usqp=CAE",
+            "type": "bebidas",
+            "description": "Refrigerante Coca-Cola Lata 310ml.",
+        },
+        {
+            "id": 20,
+            "name": "Cheeseburguer ",
+            "price": 4.99,
+            "image": "https://s2.glbimg.com/jJirZVMNK5ZsZ9UDLKQBqPu3iXk=/620x455/e.glbimg.com/og/ed/f/original/2020/10/20/hamburgueria_bob_beef_-_dia_das_criancas_-_foto_pfz_studio__norma_lima.jpg",
+            "type": "lanches",
+            "description": "Guaraná Antarctica - Gelada.",
+        },
+        {
+            "id": 21,
+            "name": "Batata frita pequena ",
+            "price": 4.99,
+            "image": "https://www.qgjeitinhocaseiro.com/wp-content/uploads/2020/01/batata-frita-curiosidades.jpg",
+            "type": "lanches",
+            "description": "Porção de batata frita pequena. Serve uma pessoa.",
+        }   
     ];
 }
 

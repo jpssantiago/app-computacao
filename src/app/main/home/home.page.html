@@ -20,6 +20,24 @@
 
 <ion-content>
   <div class="section" *ngIf="selectedFilter === 'todos'">
+    <strong>Tudo por R$ 4,99</strong>
+
+    <ion-slides [options]="{freeMode: true, slidesPerView: 'auto', spaceBetween: 15}">
+      <ion-slide *ngFor="let product of getPopularProducts499()" [routerLink]="['/product', product.id]">
+        <div class="hot-product">
+          <img src={{product.image}} />
+
+          <span>
+            <strong>{{product.name}} <ion-badge>OFF</ion-badge> </strong>
+            
+            <p>{{product.price | currency:"BRL"}}</p>
+          </span>
+        </div>
+      </ion-slide>
+    </ion-slides>
+  </div>
+
+  <div class="section" *ngIf="selectedFilter === 'todos'">
     <strong>Por menos de R$ 20,00</strong>
 
     <ion-slides [options]="{freeMode: true, slidesPerView: 'auto', spaceBetween: 15}">
