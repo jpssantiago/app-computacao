@@ -76,7 +76,7 @@ export class UserService {
   }
 
   public clearCart() {
-    this.user.cart = new Map<number, number>();
+    this.user.cart = new Map<string, number>();
   }
 
   constructor(private storage: Storage, private afa: AngularFireAuth) { }

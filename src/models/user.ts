@@ -7,7 +7,7 @@ export default class User {
     email: string;
     address: Address;
     orders: Order[];
-    cart: Map<number, number>; // Id do produto => quantidade
+    cart: Map<string, number>; // Id do produto => quantidade
 
     constructor(
         name: string, 
@@ -20,6 +20,6 @@ export default class User {
         this.address = new Address();
         this.address = address;
         this.orders = orders;
-        this.cart = new Map<number, number>();
+        this.cart = new Map<string, number>();
     }
 }

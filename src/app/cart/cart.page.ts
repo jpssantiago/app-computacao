@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
 import Product from '../../models/product';
-import getProducts from '../../assets/data/products';
 import { UserService } from '../services/user.service';
 import { NavController, ToastController } from '@ionic/angular';
+import { ProductsService } from '../services/products.service';
 
 @Component({
   selector: 'app-cart',
@@ -19,19 +19,21 @@ export class CartPage implements OnInit {
     public userService: UserService,
     private toastController : ToastController, 
     private navController : NavController, 
+    public productsService: ProductsService,
   ) {  
     this.cart = this.userService.getCart();
 
     for (let productId of this.cart.keys()) {
-      this.products.push(getProducts()[productId]);
+      const product = this.productsService.getProductById(productId);
+      this.products.push(product);
     }
   }
 
   ngOnInit() {
   }
 
-  public calculateProductPrice = (id: number): number => {
-    const price = getProducts()[id].price;
+  public calculateProductPrice = (id: string): number => {
+    const price = this.productsService.getProductById(id).price;
     return price * this.cart.get(id);
   }
 

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ProductsService } from 'src/app/services/products.service';
 import { UserService } from 'src/app/services/user.service';
-import getProducts from '../../../assets/data/products';
 
 import Product from '../../../models/product';
 
@@ -12,10 +12,13 @@ import Product from '../../../models/product';
 export class HomePage implements OnInit {
 
   public selectedFilter: string = 'todos';
-  private products : Product[] = getProducts();
-  public categories : string[] = ['lanches', 'pizzas', 'sobremesas', 'bebidas'];
+  private products : Product[] = []; // getProducts()
+  public categories : string[] = []; //  = ['lanches', 'pizzas', 'sobremesas', 'bebidas']
 
-  constructor(public userService: UserService) { }
+  constructor(public userService: UserService, public productsService: ProductsService) {
+    this.categories = this.productsService.categories;
+    this.products = this.productsService.products;
+  }
 
   ngOnInit() {
   }

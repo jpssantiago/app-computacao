@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NavController, ToastController } from '@ionic/angular';
+import { ProductsService } from '../services/products.service';
 
-import getProducts from '../../assets/data/products';
 import { UserService } from '../services/user.service';
 
 @Component({
@@ -21,9 +21,10 @@ export class ProductPage implements OnInit {
     private toastController : ToastController, 
     route: ActivatedRoute,
     private userService: UserService,
+    public productService: ProductsService,
   ) {
-    const id = +route.snapshot.paramMap.get('id');
-    this.product = getProducts()[id];
+    const id = route.snapshot.paramMap.get('id');
+    this.product = this.productService.getProductById(id);
     this.amount = this.userService.getProductAmountInCart(this.product) || 1;
   }
 
