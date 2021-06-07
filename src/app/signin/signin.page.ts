@@ -37,11 +37,13 @@ export class SigninPage implements OnInit {
       if (response) {
         const id = response.user.uid;
         this.firebaseSubscription = this.firebaseStorage.collection('users').doc(id).valueChanges().subscribe(userInfo => {
+          const id = userInfo['id'];
           const name = userInfo['name'];
           const email = userInfo['email'];
+          const orders = userInfo['orders'];
 
           this.firebaseSubscription.unsubscribe();
-          this.userService.setUser(name, email);
+          this.userService.setUser(id, name, email, orders);
           this.router.navigate(['/main']);
 
           this.email = '';

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { AngularFirestore } from '@angular/fire/firestore';
 import { Storage } from '@ionic/storage-angular';
 
 import Address from 'src/models/address';
@@ -15,8 +16,8 @@ export class UserService {
 
   public user: User;
 
-  public setUser(name: string, email: string, address: Address = new Address(), orders: Order[] = []) {
-    this.user = new User(name, email, address, orders);
+  public setUser(id: string, name: string, email: string, orders: Order[] = [], address: Address = new Address()) {
+    this.user = new User(id, name, email, address, orders);
     this.loadAddressFromStorage();
   }
 
@@ -72,14 +73,22 @@ export class UserService {
   }
 
   public addOrder(items: Product[], total: number) {
-    this.user.orders.push(new Order(items, total));
+    const order: Order = new Order(items, total);
+    this.user.orders.push(order);
+    this.saveOrders();
   }
 
   public clearCart() {
     this.user.cart = new Map<string, number>();
   }
 
-  constructor(private storage: Storage, private afa: AngularFireAuth) { }
+  private saveOrders() {
+    const collection = this.firebaseStorage.collection('users');
+    const arr = JSON.parse(JSON.stringify(this.user.orders));
+    collection.doc(this.user.id).update({ orders: arr });
+  }
+
+  constructor(private storage: Storage, private afa: AngularFireAuth, private firebaseStorage: AngularFirestore) { }
 
   getAuth(){
     return this.afa

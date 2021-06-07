@@ -60,7 +60,7 @@ export class SignupPage implements OnInit {
           name: this.name,
           orders: [],
         });
-        this.userService.setUser(this.name, this.email);
+        this.userService.setUser(id, this.name, this.email);
         this.router.navigate(['/main/home']);
       }
       

@@ -2,7 +2,7 @@ import Order from './order';
 import Address from './address';
 
 export default class User {
-    id: number;
+    id: string;
     name: string;
     email: string;
     address: Address;
@@ -10,11 +10,13 @@ export default class User {
     cart: Map<string, number>; // Id do produto => quantidade
 
     constructor(
+        id: string,
         name: string, 
         email: string,
         address: Address = new Address(),
         orders: Order[] = [],
     ) {
+        this.id = id;
         this.name = name;
         this.email = email;
         this.address = new Address();
