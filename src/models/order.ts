@@ -7,19 +7,16 @@ export default class Order {
     total: number;
     dateOrder: Date;
     status: string;
-    especificOrder: string;
 
     constructor(
         items: Product[], 
         total: number, 
         date: Date = new Date(),
         status: string = 'progress',
-        especificOrder: string = '',
     ) { 
         this.items = items;
         this.total = total;
         this.dateOrder = date;
         this.status = status;
-        this.especificOrder = especificOrder;
     }
 }
