@@ -6,3 +6,4 @@ export default class Product {
     type: string;
     description: string;
 }
+

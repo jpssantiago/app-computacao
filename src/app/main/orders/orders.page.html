@@ -5,7 +5,7 @@
 
   <ion-segment color="primary" [(ngModel)]="selectedFilter">
     <ion-segment-button value="all">
-      <ion-label>Todos os pedidos</ion-label>
+      <ion-label>Todos</ion-label>
     </ion-segment-button>
 
     <ion-segment-button value="progress">
@@ -15,10 +15,31 @@
     <ion-segment-button value="completed">
       <ion-label>Finalizados</ion-label>
     </ion-segment-button>
+
+    <ion-segment-button value="data-search">
+      <ion-label>Pesquisar</ion-label>
+    </ion-segment-button>
   </ion-segment>
 </ion-header>
 
 <ion-content>
+  <ion-item>
+    <ion-label>Ordem</ion-label>
+    <ion-select okText = "Ok" cancelText = "Voltar" placeholder="Pedidos" [(ngModel)] = "ordemProduto">
+    <ion-select-option value="anterior">Mais antigos</ion-select-option>
+    <ion-select-option value="recente">Mais recentes</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item *ngIf="selectedFilter === 'data-search'">
+    <ion-label>Data inicial</ion-label>
+    <ion-datetime displayFormat="DD/MM/YYYY" pickerFormat="DD MMMM YYYY" [(ngModel)]="initialDate" ></ion-datetime> 
+  </ion-item>
+  <ion-item *ngIf="selectedFilter === 'data-search'">
+    <ion-label>Data final</ion-label>
+    <ion-datetime displayFormat="DD/MM/YYYY" pickerFormat="DD MMMM YYYY" [(ngModel)]="finalDate"></ion-datetime> 
+  </ion-item>
+
   <ion-list>
     <div class="order-item" *ngFor="let order of getFilteredOrders()">
       <div class="circle">
@@ -26,8 +47,11 @@
       </div>
       <span>
         <strong class="ion-no-margin">{{order.total | currency:"BRL"}} - {{order.items.length}} item(s)</strong>
-        <p class="ion-no-margin">{{order.date}} - {{getOrderStatus(order.status)}}</p>
+        <p class="ion-no-margin">{{getFormattedDate(order.dateOrder)}} - {{getOrderStatus(order.status)}}</p>
       </span>
+    </div>
+    <div>
+      <p class= "ion-no-margin"><br>Total gasto: {{getOrderSum() | currency: "BRL"}}</p>
     </div>
   </ion-list>
 </ion-content>

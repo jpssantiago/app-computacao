@@ -1,21 +1,25 @@
+import { NgModule } from '@angular/core';
 import Product from './product';
 
 export default class Order {
     id: number;
     items: Product[];
     total: number;
-    date: string;
+    dateOrder: Date;
     status: string;
+    especificOrder: string;
 
     constructor(
         items: Product[], 
         total: number, 
-        date: string = `01/01/2021`, // Estático 
-        status: string = 'progress'
+        date: Date = new Date(),
+        status: string = 'progress',
+        especificOrder: string = '',
     ) { 
         this.items = items;
         this.total = total;
-        this.date = date;
+        this.dateOrder = date;
         this.status = status;
+        this.especificOrder = especificOrder;
     }
 }

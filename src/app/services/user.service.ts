@@ -13,6 +13,7 @@ import User from 'src/models/user';
   providedIn: 'root'
 })
 export class UserService {
+        
 
   public user: User;
 
